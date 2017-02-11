@@ -1,6 +1,6 @@
 Content Management System(CMS)
 
-A simple content management system built with Ruby on Rails 5.
+A simple content management system built on the Ruby on Rails tech stack.
 
 Start: 02/09/2017
 
