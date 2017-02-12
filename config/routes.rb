@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   get 'home/about'
 
   get 'home/contact'
+  
+  get 'demo/lynda'
+  
+  get 'demo/hi'
+  
+  get 'demo/hello'
 
   get 'demo/index'
   
