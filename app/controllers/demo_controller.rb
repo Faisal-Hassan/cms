@@ -7,7 +7,8 @@ class DemoController < ApplicationController
   end
   
   def hello
-    render(:action => 'index')
+    @array = [1, 2, 3, 4, 5]
+    render(:action => 'hello')
   end
   
   def hi
