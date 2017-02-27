@@ -26,9 +26,20 @@ class SubjectsController < ApplicationController
   end
 
   def edit
+    @subject = Subject.find(params[:id])
   end
   
   def update
+    # Instantiate a new object using form parameters
+    @subject = Subject.find(params[:id])
+    # Save the object
+    if @subject.update_attributes(subject_params)
+    # If save succeeds, redirect to the show action
+      redirect_to(subject_path(@subject))
+    else
+    # If save fails, redisplay the form so user can fix problems
+      render('edit')
+    end
   end
 
   def delete
