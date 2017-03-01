@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   
+  get 'pages/index'
+
+  get 'pages/show'
+
+  get 'pages/new'
+
+  get 'pages/edit'
+
+  get 'pages/delete'
+
   resources :subjects do
     
     member do
