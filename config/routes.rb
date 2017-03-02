@@ -1,22 +1,20 @@
 Rails.application.routes.draw do
   
-  get 'sections/index'
-
-  get 'sections/show'
-
-  get 'sections/new'
-
-  get 'sections/edit'
-
-  get 'sections/delete'
-
- resources :pages do
+  resources :sections do
+  	
+  	member do
+  		get :delete
+  	end
+  	
+  end
+  
+  resources :pages do
  	
    member do
      get :delete
    end
    
- end
+  end
 
   resources :subjects do
     
