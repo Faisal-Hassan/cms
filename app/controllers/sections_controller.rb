@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   
   def index
-    @section = Sections.sorted
+    @sections = Section.sorted
   end
 
   def show
@@ -23,7 +23,7 @@ class SectionsController < ApplicationController
   end
 
   def edit
-    @section = Setion.find(params[:id])
+    @section = Section.find(params[:id])
   end
   
   def update
