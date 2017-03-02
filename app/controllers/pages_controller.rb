@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
   
   def create
-    @page = Page.find(params[:id])
+    @page = Page.new(page_params)
     if @page.save
       flash[:notice] = "Page has been saved successfully"
       redirect_to(pages_path)
