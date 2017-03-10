@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+  
+  layout 'application'
+  
   def about
   end
 
