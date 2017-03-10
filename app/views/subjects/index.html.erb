@@ -3,8 +3,11 @@
 <div class="subjects index">
   <h2>Subjects</h2>
   
-  <%= link_to 'Add New Subject', new_subject_path, :class => 'action new' %>
-  
+
+  <%= link_to new_subject_path, :class => 'action new' do %>
+    <%= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <span>Add New Subject</span>
+  <% end %>
   <table class="listing" summary="Subject list">
     <tr class="header">
       <th>#</th>
