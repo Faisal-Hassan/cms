@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   
   before_action :find_subjects, :only => [:new, :create, :edit, :update]
   before_action :set_page_count, :only => [:new, :create, :edit, :update]
-  before_action :page_find_by_id, :except => [:index, :new, :create, ]
+  before_action :find_page_by_id, :except => [:index, :new, :create, ]
   
   def index
     @pages = Page.sorted
@@ -67,7 +67,7 @@ class PagesController < ApplicationController
     end
   end
   
-  def page_find_by_id
+  def find_page_by_id
     @page = Page.find(params[:id])
   end
 end
