@@ -24,19 +24,26 @@ class AdminUsersController < ApplicationController
   end
 
   def edit
-    @admin_user = AdminUser.find(params[:id])
+  end
+  
+  def update
+    if @admin_user.update_attributes(admin_user_params)
+      flash[:notice] = "Admin user updated successfully"
+      redirect_to(admin_users_path)
+    else
+      render('edit')
+    end
   end
 
   def delete
-    
   end
   
   def destroy
-    @admin_user = AdminUser.find(params[:id])
     @admin_user.destroy
     flash[:notice] = "Admin user deleted successfully"
     redirect_to(admin_users_path)
   end
+  
   
   private
   
