@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'admin_users/index'
+
+  get 'admin_users/new'
+
+  get 'admin_users/edit'
+
+  get 'admin_users/delete'
+
   get 'admin', :to => 'access#menu'
   
   get 'access/logout'
