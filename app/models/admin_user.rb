@@ -21,8 +21,13 @@ class AdminUser < ApplicationRecord
                          :length => { :maximum => 100 },
                          :format => { :with => EMAIL_REGEX },
                          :confirmation => true
-                         
   validate :username_is_allowed
+  
+  scope :sorted, lambda { order('last_name ASC, first_name ASC') }
+  
+  def name
+    "#{first_name} #{last_name}"
+  end
   
   
   private
