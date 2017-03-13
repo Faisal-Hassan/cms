@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   
+  get 'admin', :to => 'access#menu'
+  
+  get 'access/logout'
+  
+  post 'access/attempt_login'
+  
+  get 'access/menu'
+
+  get 'access/login'
+
   resources :sections do
   	
   	member do
