@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   
-  get 'admin_users/index'
-
-  get 'admin_users/new'
-
-  get 'admin_users/edit'
-
-  get 'admin_users/delete'
+  resources :admin_users, :except => [:show] do
+  	member do
+  		get :delete
+  	end
+  end
 
   get 'admin', :to => 'access#menu'
   
@@ -19,27 +17,21 @@ Rails.application.routes.draw do
   get 'access/login'
 
   resources :sections do
-  	
   	member do
   		get :delete
   	end
-  	
   end
   
   resources :pages do
- 	
    member do
      get :delete
    end
-   
   end
 
   resources :subjects do
-    
     member do
       get :delete
     end
-    
   end
 
   get 'home/contact'
