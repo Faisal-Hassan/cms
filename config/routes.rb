@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'public/index'
+
+  get 'public/show'
+
   resources :admin_users, :except => [:show] do
   	member do
   		get :delete
@@ -36,7 +40,7 @@ Rails.application.routes.draw do
 
   get 'home/contact'
   
-  root 'home#about'
+  root 'public#index'
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
