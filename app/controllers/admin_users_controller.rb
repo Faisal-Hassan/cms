@@ -3,6 +3,7 @@ class AdminUsersController < ApplicationController
   layout 'admin'
   
   before_action :confirm_logged_in
+  before_action :find_admin_user_by_id
   
   def index
     @admin_users = AdminUser.sorted
@@ -27,7 +28,7 @@ class AdminUsersController < ApplicationController
   end
 
   def delete
-    @admin_user = AdminUser.find(params[:id])
+    
   end
   
   def destroy
@@ -47,6 +48,10 @@ class AdminUsersController < ApplicationController
       :username,
       :password
       )
+  end
+  
+  def find_admin_user_by_id
+    @admin_user = AdminUser.find(params[:id])
   end
   
 end
