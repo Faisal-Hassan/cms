@@ -3,7 +3,7 @@ class AdminUsersController < ApplicationController
   layout 'admin'
   
   before_action :confirm_logged_in
-  before_action :find_admin_user_by_id
+  before_action :find_admin_user_by_id, :except => [:index, :new, :create]
   
   def index
     @admin_users = AdminUser.sorted
