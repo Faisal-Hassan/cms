@@ -2,6 +2,7 @@ class SubjectsController < ApplicationController
   
   layout 'admin'
   
+  before_action :confirm_logged_in
   before_action :find_subject_by_id, :except => [:index, :new, :create]
   before_action :set_subject_count, :only => [:new, :create, :edit, :update]
   
