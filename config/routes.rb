@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'public/index'
-
-  get 'public/show'
 
   resources :admin_users, :except => [:show] do
   	member do
@@ -37,10 +33,10 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-
-  get 'home/contact'
   
-  root 'public#index'
+  get 'show/:permalink', :to => 'public#show'
+
+  root :to => 'public#index'
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
