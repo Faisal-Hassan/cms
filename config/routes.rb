@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'show/:permalink', :to => 'public#show'
+  get 'show/:permalink', :to => 'public#show', :as => 'public_show'
 
   root :to => 'public#index'
   
