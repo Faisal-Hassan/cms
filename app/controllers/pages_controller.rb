@@ -6,7 +6,6 @@ class PagesController < ApplicationController
   before_action :find_subject
   before_action :find_subjects, :only => [:new, :create, :edit, :update]
   before_action :set_page_count, :only => [:new, :create, :edit, :update]
-  before_action :find_page_by_id, :except => [:index, :new, :create, ]
   
   def index
     @pages = @subject.pages.sorted
@@ -32,9 +31,11 @@ class PagesController < ApplicationController
   end
 
   def edit
+    @page = Page.find(params[:id])
   end
   
   def update
+    @page = Page.find(params[:id])
     if @page.update_attributes(page_params)
       flash[:notice] = "Page has been updated successfully"
       redirect_to(page_path(@page, :subject_id => @subject_id))
@@ -44,9 +45,11 @@ class PagesController < ApplicationController
   end
 
   def delete
+    @page = Page.find(params[:id])
   end
   
   def destroy
+    @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "Page has been deleted successfully"
     redirect_to(pages_path(:subject_id => @subject_id))
@@ -69,11 +72,8 @@ class PagesController < ApplicationController
     end
   end
   
-  def find_page_by_id
-    @page = Page.find(params[:id])
-  end
-  
   def find_subject
     @subject = Subject.find(params[:subject_id])
   end
+  
 end
