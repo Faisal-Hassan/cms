@@ -8,7 +8,7 @@ class SectionsController < ApplicationController
   before_action :set_section_count, :only => [:new, :create, :edit, :update]
   
   def index
-    @sections = @pages.section.sorted
+    @sections = @page.sections.sorted
   end
 
   def show
@@ -30,6 +30,7 @@ class SectionsController < ApplicationController
   end
 
   def edit
+    @section = Section.find(params[:id])
   end
   
   def update
