@@ -21,6 +21,7 @@ class PagesController < ApplicationController
   
   def create
     @page = Page.new(page_params)
+    @page.subject = @subject
     if @page.save
       flash[:notice] = "Page has been saved successfully"
       redirect_to(pages_path(:subject_id => @subject.id))
@@ -58,7 +59,7 @@ class PagesController < ApplicationController
   private
   
   def page_params
-    params.require(:page).permit(:subject_id, :name, :position, :visible, :permalink)
+    params.require(:page).permit(:name, :position, :visible, :permalink)
   end
   
   def find_subjects

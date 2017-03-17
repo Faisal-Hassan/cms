@@ -21,6 +21,7 @@ class SectionsController < ApplicationController
   
   def create
     @section = Section.new(section_params)
+    @section.page = @page
     if @section.save
       flash[:notice] = "Section has been created successfully"
       redirect_to(sections_path(:page_id => @page.id))
@@ -57,7 +58,7 @@ class SectionsController < ApplicationController
   private
   
   def section_params
-    params.require(:section).permit(:page_id, :name, :position, 
+    params.require(:section).permit(:name, :position, 
     :visible, :content_type, :content)
   end
   
