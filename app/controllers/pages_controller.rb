@@ -16,14 +16,14 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Page.new(:subject_id => @subject_id)
+    @page = Page.new(:subject_id => @subject.id)
   end
   
   def create
     @page = Page.new(page_params)
     if @page.save
       flash[:notice] = "Page has been saved successfully"
-      redirect_to(pages_path(:subject_id => @subject_id))
+      redirect_to(pages_path(:subject_id => @subject.id))
     else
       @page_count = Page.count + 1
       render('new')
@@ -38,7 +38,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     if @page.update_attributes(page_params)
       flash[:notice] = "Page has been updated successfully"
-      redirect_to(page_path(@page, :subject_id => @subject_id))
+      redirect_to(page_path(@page, :subject_id => @subject.id))
     else
       render('edit')
     end
@@ -52,7 +52,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "Page has been deleted successfully"
-    redirect_to(pages_path(:subject_id => @subject_id))
+    redirect_to(pages_path(:subject_id => @subject.id))
   end
   
   private
