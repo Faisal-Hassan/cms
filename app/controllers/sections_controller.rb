@@ -4,7 +4,6 @@ class SectionsController < ApplicationController
   
   before_action :confirm_logged_in
   before_action :find_page
-  before_action :find_pages, :only => [:new, :create, :edit, :update]
   before_action :set_section_count, :only => [:new, :create, :edit, :update]
   
   def index
@@ -60,10 +59,6 @@ class SectionsController < ApplicationController
   def section_params
     params.require(:section).permit(:name, :position, 
     :visible, :content_type, :content)
-  end
-  
-  def find_pages
-    @pages = Page.sorted
   end
 
   def set_section_count
