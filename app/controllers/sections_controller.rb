@@ -3,26 +3,27 @@ class SectionsController < ApplicationController
   layout 'admin'
   
   before_action :confirm_logged_in
+  before_action :find_page
   before_action :find_pages, :only => [:new, :create, :edit, :update]
-  before_action :find_section_by_id, :except => [:index, :new, :create]
   before_action :set_section_count, :only => [:new, :create, :edit, :update]
   
   def index
-    @sections = Section.sorted
+    @sections = @pages.section.sorted
   end
 
   def show
+    @section = Section.find(params[:id])
   end
 
   def new
-    @section = Section.new
+    @section = Section.new(:page_id => @page.id)
   end
   
   def create
     @section = Section.new(section_params)
     if @section.save
       flash[:notice] = "Section has been created successfully"
-      redirect_to(sections_path)
+      redirect_to(sections_path(:page_id => @page.id))
     else
       render('new')
     end
@@ -35,19 +36,21 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     if @section.update_attributes(section_params)
       flash[:notice] = "Section has been updated successfully"
-      redirect_to(section_path(@section))
+      redirect_to(section_path(@section, :page_id => @page.id))
     else
       render('edit')
     end
   end
 
   def delete
+    @section = Section.find(params[:id])
   end
   
   def destroy
+    @section = Section.find(params[:id])
     @section.destroy
     flash[:notice] = "Section has been deleted successfully"
-    redirect_to(sections_path)
+    redirect_to(sections_path(:page_id => @page.id))
   end
   
   private
@@ -60,16 +63,17 @@ class SectionsController < ApplicationController
   def find_pages
     @pages = Page.sorted
   end
-  
-  def find_section_by_id
-    @section = Section.find(params[:id])
-  end
-  
+
   def set_section_count
     @section_count = Section.count
     if params[:action] == 'new' || params[:action] == 'create'
       @section_count += 1
     end
   end
+  
+  def find_page
+    @page = Page.find(params[:page_id])
+  end
+  
   
 end
